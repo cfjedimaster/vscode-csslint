@@ -3,13 +3,13 @@
 	"description": "CSSLint extension",
 	"author": "Raymond Camden",
 	"license": "MIT",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "raymondcamden",
 	"engines": {
 		"vscode": "0.10.x"
 	},
 	"categories": [
-		"Other"
+		"Linters"
 	],
 	"activationEvents": [
 		"onLanguage:css"
