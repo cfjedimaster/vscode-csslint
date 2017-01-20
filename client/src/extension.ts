@@ -11,11 +11,11 @@ import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, T
 
 export function activate(context: ExtensionContext) {
 
-	console.log('Activate Valled');
+	console.log('Activate Voltron He-Man');
 	// The server is implemented in node
 	let serverModule = context.asAbsolutePath(path.join('server', 'server.js'));
 	// The debug options for the server
-	let debugOptions = { execArgv: ["--nolazy", "--debug=6004"] };
+	let debugOptions = { execArgv: ["--nolazy", "--debug-brk=6009"] };
 	
 	// If the extension is launch in debug mode the debug server options are use
 	// Otherwise the run options are used
@@ -30,14 +30,14 @@ export function activate(context: ExtensionContext) {
 		documentSelector: ['css'],
 		synchronize: {
 			// Synchronize the setting section 'languageServerExample' to the server
-			configurationSection: 'languageServerExample',
+			configurationSection: 'cssLanguageClient',
 			// Notify the server about file changes to '.clientrc files contain in the workspace
 			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
 		}
 	}
 	
 	// Create the language client and start the client.
-	let disposable = new LanguageClient('Language Server Example', serverOptions, clientOptions).start();
+	let disposable = new LanguageClient('cssLanguageClient','CSSLint Language Client', serverOptions, clientOptions,true).start();
 	
 	// Push the disposable to the context's subscriptions so that the 
 	// client can be deactivated on extension deactivation
