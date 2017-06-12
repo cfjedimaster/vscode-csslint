@@ -3,7 +3,8 @@
 	"description": "CSSLint extension",
 	"author": "Raymond Camden",
 	"license": "MIT",
-	"version": "0.0.2",
+	"version": "0.0.3",
+    "icon": "icon.png",
 	"publisher": "raymondcamden",
 	"engines": {
 		"vscode": "^1.4.0"
