@@ -1,19 +1,20 @@
 {
-  "name": "language-server-example",
+  "name": "csslint-languageserver",
   "description": "Example implementation of a language server in node.",
   "version": "0.0.1",
-  "author": "Microsoft Corporation",
-  "license": "MIT",
+  "author": "Raymond Camden",
+  "publisher": "raymondcamden",
   "engines": {
     "node": "*"
   },
+  "license": "MIT",
   "dependencies": {
-    "vscode-languageserver": "^2.6.2",
-    "csslint":"^1.0.5"
+    "vscode-languageserver": "^3.1.0",
+    "csslint": "^1.0.5"
   },
   "devDependencies": {
     "@types/node": "^6.0.52",
-    "typescript": "^2.1.4"
+    "typescript": "^2.1.5"
   },
   "scripts": {
     "compile": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -p .",

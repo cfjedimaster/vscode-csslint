@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Copyright (c) Raymond Camden. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 'use strict';
@@ -11,11 +11,11 @@ import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, T
 
 export function activate(context: ExtensionContext) {
 
-	console.log('Activate Voltron He-Man');
+	console.log('Activate csslint extension');
 	// The server is implemented in node
 	let serverModule = context.asAbsolutePath(path.join('server', 'server.js'));
 	// The debug options for the server
-	let debugOptions = { execArgv: ["--nolazy", "--debug-brk=6009"] };
+	let debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
 	
 	// If the extension is launch in debug mode the debug server options are use
 	// Otherwise the run options are used

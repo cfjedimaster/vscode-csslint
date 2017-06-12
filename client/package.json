@@ -4,10 +4,10 @@
 	"author": "Raymond Camden",
 	"license": "MIT",
 	"version": "0.0.3",
-    "icon": "icon.png",
+	"icon": "icon.png",
 	"publisher": "raymondcamden",
 	"engines": {
-		"vscode": "^1.4.0"
+		"vscode": "^1.8.0"
 	},
 	"categories": [
 		"Linters"
@@ -19,7 +19,7 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "Example configuration",
+			"title": "Max Number of Problems",
 			"properties": {
 				"cssLanguageClient.maxNumberOfProblems": {
 					"type": "number",
@@ -28,7 +28,7 @@
 				}
 			}
 		}
-	},	
+	},
 	"scripts": {
 		"vscode:prepublish": "tsc -p ./",
 		"compile": "tsc -watch -p ./",
@@ -38,10 +38,10 @@
 	"devDependencies": {
 		"@types/mocha": "^2.2.33",
 		"@types/node": "^6.0.52",
-		"typescript": "^2.1.4",
+		"typescript": "^2.1.5",
 		"vscode": "^1.0.3"
 	},
 	"dependencies": {
-		"vscode-languageclient": "^2.6.3"
+		"vscode-languageclient": "^3.1.0"
 	}
 }

@@ -1,5 +1,5 @@
 /* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Copyright (c) Raymond Camden. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 'use strict';
@@ -13,7 +13,6 @@ import {
 } from 'vscode-languageserver';
 
 let cssLint = require('csslint').CSSLint;
-let foo = require2('./csslint');
 
 // Create a connection for the server. The connection uses Node's IPC as a transport
 let connection: IConnection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
@@ -75,7 +74,6 @@ function validateTextDocument(textDocument: TextDocument): void {
 	let text = textDocument.getText();
 	var issues = cssLint.verify(text);
 
-	//connection.console.log(issues);
 	for(var i=0;i<issues.messages.length;i++) {
 		var issue = issues.messages[i];
 		var severity;
@@ -91,7 +89,7 @@ function validateTextDocument(textDocument: TextDocument): void {
 				start: {line:issue.line-1, character:issue.col-1},
 				end: {line:issue.line-1, character:issue.col-1}
 			},
-			message: issue.message;
+			message: issue.message
 		});	
 	}
 
