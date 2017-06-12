@@ -3,7 +3,6 @@
   "description": "Example implementation of a language server in node.",
   "version": "0.0.1",
   "author": "Raymond Camden",
-  "publisher": "raymondcamden",
   "engines": {
     "node": "*"
   },
