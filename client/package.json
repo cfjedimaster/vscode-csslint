@@ -19,7 +19,7 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "Max Number of Problems",
+			"title": "CSSLint Extension",
 			"properties": {
 				"cssLanguageClient.maxNumberOfProblems": {
 					"type": "number",
