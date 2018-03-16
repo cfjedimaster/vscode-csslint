@@ -25,7 +25,7 @@ let documents: TextDocuments = new TextDocuments();
 documents.listen(connection);
 
 // After the server has started the client sends an initilize request. The server receives
-// in the passed params the rootPath of the workspace plus the client capabilites. 
+// in the passed params the rootPath of the workspace plus the client capabilites.
 let workspaceRoot: string;
 connection.onInitialize((params): InitializeResult => {
 	workspaceRoot = params.rootPath;
@@ -77,9 +77,9 @@ function validateTextDocument(textDocument: TextDocument): void {
 	for(var i=0;i<issues.messages.length;i++) {
 		var issue = issues.messages[i];
 		var severity;
-		
+
 		if(issue.type === "warning") {
-			severity = DiagnosticSeverity.Warning;		
+			severity = DiagnosticSeverity.Warning;
 		} else {
 			severity = DiagnosticSeverity.Error;
 		}
@@ -90,7 +90,7 @@ function validateTextDocument(textDocument: TextDocument): void {
 				end: {line:issue.line-1, character:issue.col-1}
 			},
 			message: issue.message
-		});	
+		});
 	}
 
 	// Send the computed diagnostics to VSCode.
@@ -125,6 +125,12 @@ connection.onDidCloseTextDocument((params) => {
 	connection.console.log(`${params.textDocument.uri} closed.`);
 });
 */
+
+documents.onDidClose((event) => {
+		let uri = event.document.uri;
+
+		connection.sendDiagnostics({ uri: uri, diagnostics: [] });
+});
 
 // Listen on the connection
 connection.listen();
