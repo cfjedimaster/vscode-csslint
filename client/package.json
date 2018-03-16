@@ -21,6 +21,11 @@
 			"type": "object",
 			"title": "Max Number of Problems",
 			"properties": {
+        "cssLanguageClient.clearProblemsOnDocumentClose": {
+					"type": "boolean",
+					"default": false,
+					"description": "Clears problems (linter warnings/errors) for a document when it is closed."
+				},
 				"cssLanguageClient.maxNumberOfProblems": {
 					"type": "number",
 					"default": 100,

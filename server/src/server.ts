@@ -55,15 +55,20 @@ interface Settings {
 // These are the example settings we defined in the client's package.json
 // file
 interface ExampleSettings {
+  clearProblemsOnDocumentClose: boolean;
 	maxNumberOfProblems: number;
 }
+
+// hold the clearProblemsOnDocumentClose setting
+let clearProblemsOnDocumentClose: boolean;
 
 // hold the maxNumberOfProblems setting
 let maxNumberOfProblems: number;
 // The settings have changed. Is send on server activation
 // as well.
 connection.onDidChangeConfiguration((change) => {
-	let settings = <Settings>change.settings;
+  let settings = <Settings>change.settings;
+  clearProblemsOnDocumentClose = settings.cssLanguageClient.clearProblemsOnDocumentClose || false;
 	maxNumberOfProblems = settings.cssLanguageClient.maxNumberOfProblems || 100;
 	// Revalidate any open text documents
 	documents.all().forEach(validateTextDocument);
@@ -127,9 +132,11 @@ connection.onDidCloseTextDocument((params) => {
 */
 
 documents.onDidClose((event) => {
-	let uri = event.document.uri;
+  if (clearProblemsOnDocumentClose === true) {
+    let uri = event.document.uri;
 
-	connection.sendDiagnostics({ uri: uri, diagnostics: [] });
+    connection.sendDiagnostics({ uri: uri, diagnostics: [] });
+  }
 });
 
 // Listen on the connection
