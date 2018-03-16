@@ -133,7 +133,7 @@ connection.onDidCloseTextDocument((params) => {
 
 documents.onDidClose((event) => {
   if (clearProblemsOnDocumentClose === true) {
-    let uri = event.document.uri;
+    const uri = event.document.uri;
 
     connection.sendDiagnostics({ uri: uri, diagnostics: [] });
   }
