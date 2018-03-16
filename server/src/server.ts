@@ -127,9 +127,9 @@ connection.onDidCloseTextDocument((params) => {
 */
 
 documents.onDidClose((event) => {
-		let uri = event.document.uri;
+	let uri = event.document.uri;
 
-		connection.sendDiagnostics({ uri: uri, diagnostics: [] });
+	connection.sendDiagnostics({ uri: uri, diagnostics: [] });
 });
 
 // Listen on the connection
