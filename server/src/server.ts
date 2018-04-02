@@ -25,7 +25,7 @@ let documents: TextDocuments = new TextDocuments();
 documents.listen(connection);
 
 // After the server has started the client sends an initilize request. The server receives
-// in the passed params the rootPath of the workspace plus the client capabilites. 
+// in the passed params the rootPath of the workspace plus the client capabilites.
 let workspaceRoot: string;
 connection.onInitialize((params): InitializeResult => {
 	workspaceRoot = params.rootPath;
@@ -55,15 +55,20 @@ interface Settings {
 // These are the example settings we defined in the client's package.json
 // file
 interface ExampleSettings {
+  clearProblemsOnDocumentClose: boolean;
 	maxNumberOfProblems: number;
 }
+
+// hold the clearProblemsOnDocumentClose setting
+let clearProblemsOnDocumentClose: boolean;
 
 // hold the maxNumberOfProblems setting
 let maxNumberOfProblems: number;
 // The settings have changed. Is send on server activation
 // as well.
 connection.onDidChangeConfiguration((change) => {
-	let settings = <Settings>change.settings;
+  let settings = <Settings>change.settings;
+  clearProblemsOnDocumentClose = settings.cssLanguageClient.clearProblemsOnDocumentClose || false;
 	maxNumberOfProblems = settings.cssLanguageClient.maxNumberOfProblems || 100;
 	// Revalidate any open text documents
 	documents.all().forEach(validateTextDocument);
@@ -77,9 +82,9 @@ function validateTextDocument(textDocument: TextDocument): void {
 	for(var i=0;i<issues.messages.length;i++) {
 		var issue = issues.messages[i];
 		var severity;
-		
+
 		if(issue.type === "warning") {
-			severity = DiagnosticSeverity.Warning;		
+			severity = DiagnosticSeverity.Warning;
 		} else {
 			severity = DiagnosticSeverity.Error;
 		}
@@ -90,7 +95,7 @@ function validateTextDocument(textDocument: TextDocument): void {
 				end: {line:issue.line-1, character:issue.col-1}
 			},
 			message: issue.message
-		});	
+		});
 	}
 
 	// Send the computed diagnostics to VSCode.
@@ -125,6 +130,14 @@ connection.onDidCloseTextDocument((params) => {
 	connection.console.log(`${params.textDocument.uri} closed.`);
 });
 */
+
+documents.onDidClose((event) => {
+  if (clearProblemsOnDocumentClose === true) {
+    const uri = event.document.uri;
+
+    connection.sendDiagnostics({ uri: uri, diagnostics: [] });
+  }
+});
 
 // Listen on the connection
 connection.listen();
