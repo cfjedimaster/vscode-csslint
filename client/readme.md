@@ -9,6 +9,8 @@ Note: Be sure to disable VSCode's internal CSS linting by adding:
 to your preferences.
 
 # History
+April 2, 2018: Two PRs from @mseiler025. One is cleanup, one adds a 'clear issues on document close setting'. 
+
 June 12, 2017: First, took in a PR from @coliff that added an icon (thanks!). I then did
 a bunch of cleanup while I was trying to get the darn thing running again on my laptop. 
 
