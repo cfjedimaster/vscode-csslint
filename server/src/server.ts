@@ -6,10 +6,9 @@
 
 import {
 	IPCMessageReader, IPCMessageWriter,
-	createConnection, IConnection, TextDocumentSyncKind,
+	createConnection, IConnection, 
 	TextDocuments, TextDocument, Diagnostic, DiagnosticSeverity,
-	InitializeParams, InitializeResult, TextDocumentPositionParams,
-	CompletionItem, CompletionItemKind
+	InitializeResult
 } from 'vscode-languageserver';
 
 let cssLint = require('csslint').CSSLint;
@@ -26,9 +25,7 @@ documents.listen(connection);
 
 // After the server has started the client sends an initilize request. The server receives
 // in the passed params the rootPath of the workspace plus the client capabilites.
-let workspaceRoot: string;
-connection.onInitialize((params): InitializeResult => {
-	workspaceRoot = params.rootPath;
+connection.onInitialize((): InitializeResult => {
 	return {
 		capabilities: {
 			// Tell the client that the server works in FULL text document sync mode
@@ -79,9 +76,9 @@ function validateTextDocument(textDocument: TextDocument): void {
 	let text = textDocument.getText();
 	var issues = cssLint.verify(text);
 
-	for(var i=0;i<issues.messages.length;i++) {
+	for(var i=0;i<Math.min(issues.messages.length,maxNumberOfProblems);i++) {
 		var issue = issues.messages[i];
-		var severity;
+		var severity:DiagnosticSeverity;
 
 		if(issue.type === "warning") {
 			severity = DiagnosticSeverity.Warning;
@@ -94,7 +91,8 @@ function validateTextDocument(textDocument: TextDocument): void {
 				start: {line:issue.line-1, character:issue.col-1},
 				end: {line:issue.line-1, character:issue.col-1}
 			},
-			message: issue.message
+			message: issue.message,
+			source:'ex'
 		});
 	}
 
@@ -102,7 +100,7 @@ function validateTextDocument(textDocument: TextDocument): void {
 	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 }
 
-connection.onDidChangeWatchedFiles((change) => {
+connection.onDidChangeWatchedFiles(() => {
 	// Monitored files have change in VSCode
 	connection.console.log('We recevied an file change event');
 });

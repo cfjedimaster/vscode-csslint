@@ -3,20 +3,18 @@
   "description": "Example implementation of a language server in node.",
   "version": "0.0.1",
   "author": "Raymond Camden",
+  "publisher": "raymondcamden",
   "engines": {
     "node": "*"
   },
   "license": "MIT",
   "dependencies": {
-    "vscode-languageserver": "^3.1.0",
+    "vscode-languageserver": "^3.5.0",
     "csslint": "^1.0.5"
   },
-  "devDependencies": {
-    "@types/node": "^6.0.52",
-    "typescript": "^2.1.5"
-  },
   "scripts": {
+    "installServer": "installServerIntoExtension ../client ./package.json ./tsconfig.json",
     "compile": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -p .",
-    "watch": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc --watch -p ."
+    "watch": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -w -p ."
   }
 }
