@@ -1,9 +1,10 @@
 {
-	"name": "csslink",
-	"description": "CSS Lint extension",
+	"name": "csslint",
+	"displayName": "CSSLint",
+	"description": "CSSLint extension",
 	"author": "Raymond Camden",
 	"license": "MIT",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"publisher": "raymondcamden",
 	"repository": {
 		"type": "git",
