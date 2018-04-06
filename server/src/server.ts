@@ -88,7 +88,7 @@ function validateTextDocument(textDocument: TextDocument): void {
 				end: {line:issue.line-1, character:issue.col-1}
 			},
 			message: issue.message,
-			source:'ex'
+			source:'CSSLint'
 		});
 	}
 
