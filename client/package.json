@@ -3,7 +3,7 @@
 	"description": "CSSLint extension",
 	"author": "Raymond Camden",
 	"license": "MIT",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"icon": "icon.png",
 	"publisher": "raymondcamden",
 	"repository": {

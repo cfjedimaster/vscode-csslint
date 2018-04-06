@@ -3,11 +3,14 @@
 	"description": "CSS Lint extension",
 	"author": "Raymond Camden",
 	"license": "MIT",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"publisher": "raymondcamden",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cfjedimaster/vscode-csslint"
+	},
+	"engines": {
+		"vscode": "^1.16.0"
 	},
 	"scripts": {
 		"postinstall": "cd server && npm install && cd ../client && npm install && cd ..",
